@@ -1,0 +1,139 @@
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<style>
+    body {
+        background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+        background-blend-mode: screen;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 42vh;
+        flex-direction: column;
+    }
+
+    .header {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 70px;
+    }
+
+    .start {
+        color: white;
+        font-size: 5rem !important;
+        cursor: pointer;
+        display: flex !important;
+        justify-content: center;
+        transition: all 0.5s;
+    }
+
+    .start:hover {
+        color: grey;
+    }
+
+    ol {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        align-items: baseline;
+    }
+
+    li {
+        padding: 20px;
+        border: 1px solid transparent;
+        width: 50px;
+        height: 50px;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 80px;
+        background-color: purple;
+        font-weight: bold;
+        color: white;
+    }
+
+    li:first-child {
+        border: 5px solid white;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="header">
+            ePermits Sprint Randomiser
+        </div>
+        <ol id="scrum">
+            <li class="animate__animated animate__rotateIn">
+                Tomasz
+            </li>
+            <li class="animate__animated animate__backInDown">
+                Atul
+            </li>
+            <li class="animate__animated animate__rotateIn">
+                Brian
+            </li>
+            <li class="animate__animated animate__backInDown">
+                Alan
+            </li>
+            <li class="animate__animated animate__backInUp">
+                Mateusz
+            </li>
+            <li class="animate__animated animate__backInDown">
+                Stewart
+            </li>
+        </ol>
+    </div>
+    <span class="material-icons start animate__animated animate__heartBeat" onclick="start()">
+        restart_alt
+    </span>
+</body>
+<script>
+    function start() {
+        randomiseList();
+
+        setTimeout(() => {
+            randomiseList();
+
+            setTimeout(() => {
+                randomiseList();
+            }, 1000);
+
+            setTimeout(() => {
+                randomiseList();
+            }, 1000);
+        }, 1000);
+    }
+
+    function randomiseItems(items) {
+        var cached = items.slice(0), temp, i = cached.length, rand;
+        while (--i) {
+            rand = Math.floor(i * Math.random());
+            temp = cached[rand];
+            cached[rand] = cached[i];
+            cached[i] = temp;
+        }
+        return cached;
+    }
+
+    function randomiseList() {
+        var list = document.getElementById("scrum");
+        var nodes = list.children, i = 0;
+        nodes = Array.prototype.slice.call(nodes);
+        nodes = randomiseItems(nodes);
+        while (i < nodes.length) {
+            list.appendChild(nodes[i]);
+            ++i;
+        }
+    }
+</script>
